@@ -11,12 +11,6 @@ on:
       - main # Also trigger on pull requests to the main branch
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
   k8s-manifest-files_update:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' # Only run this job if the branch is 'main'
