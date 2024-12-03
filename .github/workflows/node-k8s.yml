@@ -3,12 +3,16 @@ name: node-k8s Pipeline
 on:
   push:
     branches:
-      - main # Also trigger on commits to the main branch
-
+      - main
+    paths:
+      - ".github/workflows/node-k8s.yml"
+      - "node-test/**"
   pull_request:
     branches:
       - dev
-
+    paths:
+      - ".github/workflows/node-k8s.yml"
+      - "node-test/**"
 
 jobs:
   k8s-manifest-files_update:
@@ -17,3 +21,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: change Directory
+        run: |
+          cd node-k8s
