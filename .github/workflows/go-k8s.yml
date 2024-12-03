@@ -1,0 +1,21 @@
+name: k8s Pipeline
+
+on:
+  push:
+    branches:
+      - main # Also trigger on commits to the main branch
+
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  k8s-manifest-files_update:
+    runs-on: ubuntu-latest
+    # if: github.ref == 'refs/heads/main' # Only run this job if the branch is 'main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: change Directory
+        run: |
+          cd go-k8s
