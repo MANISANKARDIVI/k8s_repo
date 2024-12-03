@@ -8,7 +8,7 @@ on:
   pull_request:
     branches:
       - dev
-      - main # Also trigger on pull requests to the main branch
+
 
 jobs:
   k8s-manifest-files_update:
@@ -18,6 +18,4 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-          
-      
-            
+        
