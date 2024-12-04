@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: myapp-container
-          image: manisankardivi/go-test:
+          image: manisankardivi/go-test:9.9.9
           imagePullPolicy: Always
           ports:
             - containerPort: 80
