@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scylladb-deploy
+  labels:
+    app: scylladb-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: scylladb-app
+  template:
+    metadata:
+      labels:
+        app: scylladb-app
+    spec:
+      containers:
+        - name: scylladb-container
+          image: manisankardivi/scylladb-test:<VERSION>
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9042 # CQL client port
+            - containerPort: 7000 # Internode communication
+            - containerPort: 7001 # Internode communication with SSL (optional)
+            - containerPort: 7199 # JMX monitoring (optional)
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: scylladb-app
+  name: scylladb-svc
+spec:
+  selector:
+    app: scylladb-app
+  ports:
+    - name: cql
+      port: 9042
+      targetPort: 9042
+    - name: internode
+      port: 7000
+      targetPort: 7000
+    - name: internode-ssl
+      port: 7001
+      targetPort: 7001
+    - name: jmx
+      port: 7199
+      targetPort: 7199
+  type: ClusterIP
