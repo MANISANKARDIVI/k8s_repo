@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: scylladb-container
-          image: manisankardivi/scylladb-test:1.1.1
+          image: manisankardivi/scylladb-test:1.1.2
           imagePullPolicy: Always
           ports:
             - containerPort: 9042 # CQL client port
